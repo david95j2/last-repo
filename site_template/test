@@ -1,0 +1,11 @@
+<table border="2">
+  <tr>
+    <th>번호</th>
+    <th>제목</th>
+    <th>작성자</th>
+    <th>게시일</th>
+  </tr>
+  <tr>
+    ${title-bar__section-1__list-by-board}    
+  </tr>
+</table>
