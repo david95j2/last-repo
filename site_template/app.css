@@ -1,293 +1,327 @@
 /* 폰트 */
 @font-face {
-  font-family: 'LotteMartDream';
-  font-style: normal;
-  font-weight: 400;
-  src: url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2') format('woff2'), url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff') format('woff');
+	font-family: 'LotteMartDream';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2')
+		format('woff2'),
+		url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff')
+		format('woff');
 }
+
 @font-face {
-  font-family: 'LotteMartDream';
-  font-style: normal;
-  font-weight: 700;
-  src: url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff2') format('woff2'), url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff') format('woff');
+	font-family: 'LotteMartDream';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff2')
+		format('woff2'),
+		url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff')
+		format('woff');
 }
+
 @font-face {
-  font-family: 'LotteMartDream';
-  font-style: normal;
-  font-weight: 300;
-  src: url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff2') format('woff2'), url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff') format('woff');
+	font-family: 'LotteMartDream';
+	font-style: normal;
+	font-weight: 300;
+	src:
+		url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff2')
+		format('woff2'),
+		url('https://cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamLight.woff')
+		format('woff');
 }
+
 html {
-  font-family: 'LotteMartDream', sans-serif;
+	font-family: 'LotteMartDream', sans-serif;
 }
 
 /* 노말라이즈 */
 body, ul, li, h1, h2, h3 {
-  margin:0;
-  padding:0;
-  list-style:none;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
+
 a {
-  color:inherit;
-  text-decoration:none;
+	color: inherit;
+	text-decoration: none;
 }
 
 /* 라이브러리 */
 .hover-underline:hover {
-  text-decoration:underline;
+	text-decoration: underline;
 }
 
 .flex {
-  display:flex;
+	display: flex;
 }
 
 .flex-jc-c {
-  justify-content:center;
+	justify-content: center;
 }
 
 .flex-ai-c {
-  align-items:center;
+	align-items: center;
 }
 
 .flex-wrap {
-  flex-wrap:wrap;
+	flex-wrap: wrap;
 }
 
 .flex-column {
-  flex-direction:column;
+	flex-direction: column;
 }
 
 .flex-grow-1 {
-  flex-grow:1;
+	flex-grow: 1;
 }
 
 .con {
-  margin-left:auto;
-  margin-right:auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .min-height-100vh {
-  min-height:100vh;
+	min-height: 100vh;
 }
 
 .bg-pink {
-  background-color:pink;
+	background-color: pink;
 }
 
 .bd-green {
-  border:10px solid green;
+	border: 10px solid green;
 }
 
 .bg-red {
-  background-color:red;
+	background-color: red;
 }
 
 .bg-blue {
-  background-color:blue;
+	background-color: blue;
 }
 
 .height-100p {
-  height:100%;
+	height: 100%;
+}
+
+.none {
+	display: none;
 }
 
 .block {
-  display:block;
+	display: block;
 }
 
 /* 커스텀 */
 .con-min-width {
-  min-width:1200px;
+	min-width: 1200px;
 }
 
 .con {
-  width:1200px;
+	width: 1200px;
 }
 
 /* 로고 시작 */
 .logo {
-  font-size:4rem;
+	font-size: 4rem;
 }
 
-.logo > span {
-  margin-left:10px;
+.logo>span {
+	margin-left: 10px;
 }
 
-.logo > span > span {
-  color:red;
+.logo>span>span {
+	color: red;
 }
 
 .logo--mini {
-  font-size:2rem;
+	font-size: 2rem;
 }
 /* 로고 끝 */
 
 /* 로고바 시작 */
 .logo-bar {
-  background-color:black;
-  color:white;
-  height:150px;
+	background-color: black;
+	color: white;
+	height: 150px;
 }
 /* 로고바 끝 */
 
 /* 메뉴바 시작 */
 .menu-bar {
-  background-color:black;
-  color:white;
+	background-color: black;
+	color: white;
 }
 
-.menu-bar__menu-1 > ul > li {
-  width:25%;
-  position:relative;
+.menu-bar__menu-1>ul>li {
+	width: 25%;
+	position: relative;
 }
 
-.menu-bar__menu-1 ul > li > a {
-  text-align:center;
-  padding:20px 0;
+.menu-bar__menu-1 ul>li>a {
+	text-align: center;
+	padding: 20px 0;
 }
 
-.menu-bar__menu-1 ul > li:hover > a {
-  background-color:white;
-  color:black;
+.menu-bar__menu-1 ul>li:hover>a {
+	background-color: white;
+	color: black;
 }
 
-.menu-bar__menu-1 > ul > li > a {
-  border-radius:10px 10px 0 0;
+.menu-bar__menu-1>ul>li>a {
+	border-radius: 10px 10px 0 0;
 }
 
-.menu-bar__menu-1 > ul ul {
-  display:none;
-  position:absolute;
-  top:100%;
-  left:-10px;
-  width:100%;
-  background-color:black;
-  border:10px solid black;
-  border-top-width:0;
-  border-radius:0 0 20px 20px;
+.menu-bar__menu-1>ul ul {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: -10px;
+	width: 100%;
+	background-color: black;
+	border: 10px solid black;
+	border-top-width: 0;
+	border-radius: 0 0 20px 20px;
+	z-index: 10;
 }
 
-.menu-bar__menu-1 > ul > li:hover > ul {
-  display:block;
+.menu-bar__menu-1>ul>li:hover>ul {
+	display: block;
 }
 
-.menu-bar__menu-1 > ul ul > li:last-child > a {
-  border-radius:0 0 10px 10px;
+.menu-bar__menu-1>ul ul>li:last-child>a {
+	border-radius: 0 0 10px 10px;
 }
 /* 메뉴바 끝 */
 
 /* 타이틀바 시작 */
 .title-bar {
-  margin-top:30px;
-  margin-bottom:30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 /* 타이틀바 끝 */
 
 /* 하단바 시작 */
 .bottom-bar {
-  margin-top:30px;
-  background-color:black;
-  color:white;
-  padding-top:30px;
-  padding-bottom:30px;
+	margin-top: 30px;
+	background-color: black;
+	color: white;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 .bottom-bar__site-info {
-  margin-left:20px;
+	margin-left: 20px;
 }
 /* 하단바 끝 */
 
 /* 게시물 리스트 시작 */
-
-/* 게시물 리스트 */
 :root {
-  --article-list__cell-id__width:120px;
-  --article-list__cell-reg-date__width:180px;
-  --article-list__cell-writer__width:100px;
-  --article-list__cell-like__width:80px;
-  --article-list__cell-hit__width:80px;
-  --article-list__cell-title__width:calc(100% - var(--article-list__cell-id__width) - var(--article-list__cell-reg-date__width) - var(--article-list__cell-writer__width) - var(--article-list__cell-like__width) - var(--article-list__cell-hit__width));
+	--article-list__cell-id__width: 100px;
+	--article-list__cell-reg-date__width: 220px;
+	--article-list__cell-writer__width: 150px;
+	--article-list__cell-title__width: calc(100% - var(--article-list__cell-id__width) - var(--article-list__cell-reg-date__width)- var(--article-list__cell-writer__width));
 }
 
-.article-list > * > div {
-  display:flex;
+.article-list>*>div {
+	display: flex;
 }
 
-.article-list > header > div > div {
-  position:relative;
+.article-list>header>div>div {
+	position: relative;
 }
 
-.article-list > header > div > div:not(:last-child)::after {
-  content:"";
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  right:0;
-  width:1px;
-  height:10px;
-  background-color:black;
+.article-list>header>div>div:not(:last-child )::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+	width: 1px;
+	height: 10px;
+	background-color: black;
 }
 
-.article-list > * > div > div {
-  box-sizing:border-box;
-  text-align:center;
-  padding-top:10px;
-  padding-bottom:10px;
+.article-list>*>div>div {
+	box-sizing: border-box;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .article-list__cell-id {
-  width:var(--article-list__cell-id__width);
+	width: var(--article-list__cell-id__width);
 }
 
 .article-list__cell-reg-date {
-  width:var(--article-list__cell-reg-date__width);
+	width: var(--article-list__cell-reg-date__width);
 }
 
 .article-list__cell-writer {
-  width:var(--article-list__cell-writer__width);
+	width: var(--article-list__cell-writer__width);
 }
 
 .article-list__cell-title {
-  width:var(--article-list__cell-title__width);
-}
-.article-list__cell-like {
-  width:var(--article-list__cell-like__width);
-}
-.article-list__cell-hit {
-  width:var(--article-list__cell-hit__width);
+	width: var(--article-list__cell-title__width);
 }
 
-.article-list > main .article-list__cell-title {
-  text-align:left;
-  padding-left:10px;
+.article-list__cell-title {
+	text-align: left;
+	padding-left: 10px;
 }
 
-.article-list > main > div {
-  border-top:1px solid black;
+.article-list>main>div {
+	border-top: 1px solid black;
 }
 /* 게시물 리스트 끝 */
 
 /* 게시물 리스트 페이지 메뉴 시작 */
 .article-page-menu {
-  margin-top:20px;
+	margin-top: 20px;
 }
 
-.article-page-menu > ul > li > a {
-  padding:7px;
+.article-page-menu>ul>li>a {
+	padding: 7px;
 }
 
-.article-page-menu > ul > li:not(:first-child):not(:last-child) > a {
-  border:1px solid transparent;
-  padding-left:0;
-  padding-right:0;
-  min-width:30px;
-  justify-content:center;
+.article-page-menu>ul>li:not (:first-child ):not (:last-child ) >a {
+	border: 1px solid transparent;
+	padding-left: 0;
+	padding-right: 0;
+	min-width: 30px;
+	justify-content: center;
 }
 
-.article-page-menu > ul > li:not(:first-child):not(:last-child):hover > a {
-  border-color:#afafaf;
+.article-page-menu>ul>li:not (:first-child ):not (:last-child ):hover>a
+	{
+	border-color: #afafaf;
 }
 
 .article-page-menu__link--selected {
-  color:red;
+	color: red;
 }
 /* 게시물 리스트 페이지 메뉴 끝 */
+
+/* 게시물 상세 시작 */
+.article-detail>* {
+	border-bottom: 1px solid black;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+.article-detail__title {
+	font-size: 1.2rem;
+	padding-top: 0;
+}
+
+.article-detail__sub-info>* {
+	margin-right: 15px;
+}
+
+.article-detail__menu>a {
+	margin-right: 15px;
+}
+
+/* 게시물 상세 끝 */

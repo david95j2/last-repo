@@ -83,4 +83,12 @@ public class ArticleService {
 	public void recommand(int memberId, int id) {
 		articleDao.recommand(memberId, id);
 	}
+	
+	public List<Article> getForPrintArticles(int boardId) {
+		return articleDao.getForPrintArticles(boardId);
+	}
+
+	public List<Article> getForPrintArticles() {
+		return articleDao.getForPrintArticles(0);
+	}
 }

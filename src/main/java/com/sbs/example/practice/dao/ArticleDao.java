@@ -49,9 +49,9 @@ public class ArticleDao {
 		List<Article> articles = new ArrayList<>();
 
 		String sql; // SQL문을 저장할 String
-		sql = "SELECT * FROM ( SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* FROM article a,";
-		sql += "(SELECT @ROWNUM := 0) TMP WHERE boardId=? ORDER BY boardId ASC)SUB ";
-		sql += " ORDER BY SUB.ROWNUM DESC ";
+		sql = "SELECT SUB.*, `name` FROM ( SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* FROM article a,";
+		sql += " (SELECT @ROWNUM := 0) TMP WHERE boardId=? ORDER BY boardId ASC)SUB INNER JOIN `member` AS m ON SUB.memberId=m.id";
+		sql += " ORDER BY SUB.ROWNUM DESC";
 
 		List<Map<String, Object>> articleListMap = MysqlUtil.selectRows(new SecSql().append(sql, boardId));
 		for (Map<String, Object> articleMap : articleListMap) {
@@ -70,7 +70,6 @@ public class ArticleDao {
 			article.extra__name = (String) articleMap.get("name");
 			articles.add(article);
 		}
-		Collections.reverse(articles);
 		return articles;
 	}
 
@@ -274,6 +273,33 @@ public class ArticleDao {
 	public List<Board> getBoards() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public List<Article> getForPrintArticles(int boardId) {
+		List<Article> articles = new ArrayList<>();
+
+		SecSql sql = new SecSql();
+		sql.append("SELECT A.*");
+		sql.append(", M.name AS extra__name");
+		sql.append(", B.name AS extra__boardName");
+		sql.append(", B.code AS extra__boardCode");
+		sql.append(" FROM article AS A");
+		sql.append(" INNER JOIN `member` AS M");
+		sql.append(" ON A.memberId = M.id");
+		sql.append(" INNER JOIN `board` AS B");
+		sql.append(" ON A.boardId = B.id");
+		if (boardId != 0) {
+			sql.append(" WHERE A.boardId = ?", boardId);
+		}
+		sql.append(" ORDER BY A.id DESC");
+
+		List<Map<String, Object>> articleMapList = MysqlUtil.selectRows(sql);
+
+		for (Map<String, Object> articleMap : articleMapList) {
+			articles.add(new Article(articleMap));
+		}
+
+		return articles;
 	}
 
 }
