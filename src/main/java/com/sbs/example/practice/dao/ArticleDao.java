@@ -206,27 +206,43 @@ public class ArticleDao {
 	}
 
 	// (게시판 선택) 게시판 목록 나타내기 + 게시물수
+//	public List<Board> getForPrintBoards() {
+//		List<Board> boards = new ArrayList<>();
+//		SecSql sql = new SecSql();
+//		sql.append("SELECT board.*,COUNT(article.id) AS cnt");
+//		sql.append(" FROM board INNER JOIN article");
+//		sql.append(" ON board.id=article.boardId GROUP BY boardId");
+//
+//		List<Map<String, Object>> boardMaps = MysqlUtil.selectRows(sql);
+//		if (boardMaps.isEmpty()) {
+//			return null;
+//		}
+//		for (Map<String, Object> boardMap : boardMaps) {
+//			int id = (int) boardMap.get("id");
+//			String regDate = (String) boardMap.get("regDate");
+//			String updateDate = (String) boardMap.get("updateDate");
+//			String name = (String) boardMap.get("name");
+//			String code = (String) boardMap.get("code");
+//			int cnt = (int) boardMap.get("cnt");
+//			Board board = new Board(id, regDate, updateDate, name, code, cnt);
+//			boards.add(board);
+//		}
+//		return boards;
+//	}
 	public List<Board> getForPrintBoards() {
 		List<Board> boards = new ArrayList<>();
-		SecSql sql = new SecSql();
-		sql.append("SELECT board.*,COUNT(article.id) AS cnt");
-		sql.append(" FROM board INNER JOIN article");
-		sql.append(" ON board.id=article.boardId GROUP BY boardId");
 
-		List<Map<String, Object>> boardMaps = MysqlUtil.selectRows(sql);
-		if (boardMaps.isEmpty()) {
-			return null;
+		SecSql sql = new SecSql();
+		sql.append("SELECT B.*");
+		sql.append("FROM board AS B");
+		sql.append("ORDER BY B.id DESC");
+
+		List<Map<String, Object>> mapList = MysqlUtil.selectRows(sql);
+
+		for (Map<String, Object> map : mapList) {
+			boards.add(new Board(map));
 		}
-		for (Map<String, Object> boardMap : boardMaps) {
-			int id = (int) boardMap.get("id");
-			String regDate = (String) boardMap.get("regDate");
-			String updateDate = (String) boardMap.get("updateDate");
-			String name = (String) boardMap.get("name");
-			String code = (String) boardMap.get("code");
-			int cnt = (int) boardMap.get("cnt");
-			Board board = new Board(id, regDate, updateDate, name, code, cnt);
-			boards.add(board);
-		}
+
 		return boards;
 	}
 

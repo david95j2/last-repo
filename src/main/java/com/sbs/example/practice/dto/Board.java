@@ -1,5 +1,7 @@
 package com.sbs.example.practice.dto;
 
+import java.util.Map;
+
 public class Board {
 	
 	public int id;
@@ -17,5 +19,19 @@ public class Board {
 		this.name=name;
 		this.code=code;
 		this.extra__aboardCnt=cnt;
+	}
+	
+	@Override
+	public String toString() {
+		return "Board [id=" + id + ", regDate=" + regDate + ", updateDate=" + updateDate + ", name=" + name + ", code="
+				+ code + ", extra__aboardCnt=" + extra__aboardCnt + "]";
+	}
+
+	public Board(Map<String, Object> map) {
+		this.id = (int) map.get("id");
+		this.regDate = (String) map.get("regDate");
+		this.updateDate = (String) map.get("updateDate");
+		this.code = (String) map.get("code");
+		this.name = (String) map.get("name");
 	}
 }

@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class Util {
-	
 	public static void mkdirs(String path) {
 		File dir = new File(path);
 
@@ -81,7 +80,7 @@ public class Util {
 				e.printStackTrace();
 				return false;
 			}
-        } 
+        }
 
         try {
 			Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
