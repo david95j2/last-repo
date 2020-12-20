@@ -102,89 +102,89 @@ hit INT(10) UNSIGNED NOT NULL, `like` INT(10) UNSIGNED NOT NULL
 DESC article
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='공지1', `body`='1번 사용자가 작성함.',
 memberId=1, boardId=1;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='공지2', `body`='2번 사용자가 작성함',
 memberId=2, boardId=1;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='공지3', `body`='3번 사용자가 작성함',
 memberId=3, boardId=1;
 
 SELECT * FROM article
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유1', `body`='3번 사용자가 작성함',
 memberId=3, boardId=2;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유2', `body`='1번 사용자가 작성함',
 memberId=1, boardId=2;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유3', `body`='4번 사용자가 작성함',
 memberId=4, boardId=2;
 
 ##
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유4', `body`='3번 사용자가 작성함',
 memberId=3, boardId=2;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유5', `body`='2번 사용자가 작성함',
 memberId=2, boardId=2;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유6', `body`='1번 사용자가 작성함',
 memberId=1, boardId=2;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유7', `body`='4번 사용자가 작성함',
 memberId=4, boardId=2;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유8', `body`='3번 사용자가 작성함',
 memberId=3, boardId=2;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유9', `body`='2번 사용자가 작성함',
 memberId=2, boardId=2;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유10', `body`='1번 사용자가 작성함',
 memberId=1, boardId=2;
 
 INSERT INTO article
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 title='자유11', `body`='4번 사용자가 작성함',
 memberId=4, boardId=2;
 ##
@@ -202,28 +202,29 @@ userId CHAR(20) NOT NULL, passwd VARCHAR(10) NOT NULL, `name` CHAR(20) NOT NULL
 DESC `member`
 
 INSERT INTO `member`
-SET regDate = NOW(),
+SET regDate = date(NOW()),
 userId = 'user1',
 passwd = 'user1',
 `name`='테스트1'
 
 INSERT INTO `member`
-SET regDate = NOW(),
+SET regDate = date(NOW()),
 userId = 'user2',
 passwd = 'user2',
 `name`='테스트2'
 
 INSERT INTO `member`
-SET regDate = NOW(),
+SET regDate = date(NOW()),
 userId = 'user3',
 passwd = 'user3',
 `name`='테스트3'
 
 INSERT INTO `member`
-SET regDate = NOW(),
+SET regDate = date(NOW()),
 userId = 'user4',
 passwd = 'user4',
 `name`='테스트4'
+
 
 SELECT * FROM `member`
 
@@ -237,14 +238,14 @@ updateDate DATETIME NOT NULL,
 );
 
 INSERT INTO board
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 `name`='공지사항',
 `code`='notice'
 
 INSERT INTO board
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 `name`='자유',
 `code`='free'
 
@@ -276,48 +277,48 @@ SELECT * FROM articleReply
 
 
 INSERT INTO articleReply 
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 articleId = 2,
 boardReplyId = 1,
 reply = '안녕하세요 저는 테스트1입니다.',
 memberReplyId = 1
 
 INSERT INTO articleReply 
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 articleId = 2,
 boardReplyId = 1,
 reply = '안녕하세요 저는 테스트2입니다.',
 memberReplyId = 2
 
 INSERT INTO articleReply 
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 articleId = 2,
 boardReplyId = 1,
 reply = '안녕하세요 저는 테스트3입니다.',
 memberReplyId = 3
 
 INSERT INTO articleReply 
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 articleId = 1,
 boardReplyId = 1,
 reply = '안녕하세요 저는 테스트4입니다.',
 memberReplyId = 4
 
 INSERT INTO articleReply 
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 articleId = 5,
 boardReplyId = 1,
 reply = '안녕하세요 저는 테스트1입니다.',
 memberReplyId = 1
 
 INSERT INTO articleReply 
-SET regDate = NOW(),
-updateDate = NOW(),
+SET regDate = date(NOW()),
+updateDate = date(NOW()),
 articleId = 3,
 boardReplyId = 1,
 reply = '안녕하세요 저는 테스트2입니다.',
@@ -336,3 +337,26 @@ WHERE articleId = 2
 
 
 SELECT * FROM articleReply WHERE articleId =2
+
+
+#################랜덤 게시물 생성####################
+
+# 각종 함수
+/*
+SELECT DATE(NOW());
+SELECT YEAR(NOW());
+SELECT MONTH(NOW());
+SELECT DAY(NOW());
+SELECT SUBSTR("안녕하세요.", 1, 2);
+SELECT SUBSTR("안녕하세요.", 2, 2);
+SELECT CONCAT("안녕", "하세요.");
+SELECT RAND() * 100;
+*/
+
+insert into article
+set regDate = NOW(),
+updateDate = NOW(),
+title = concat("제목_", rand()),
+`body` = CONCAT("내용_", RAND()),
+memberId = FLOOR(RAND() * 4) + 1,
+boardId = FLOOR(RAND() * 2) + 1;
