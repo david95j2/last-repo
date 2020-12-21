@@ -295,7 +295,9 @@ public class BuildService {
 		} else if (pageName.startsWith("article_list_notice")) {
 			return "<i class=\"fas fa-flag\"></i> <span>NOTICE LIST</span>";
 		} else if (pageName.startsWith("article_list_")) {
-			return "<i class=\"fas fa-clipboard-list\"></i> <span>NOTICE LIST</span>";
+			return "<i class=\"fas fa-clipboard-list\"></i> <span>ARTICLE LIST</span>";
+		} else if (pageName.startsWith("article_list_it")) {
+			return "<i class=\"fas fa-microscope\"></i> <span>IT LIST</span>";
 		}
 
 		return "";
