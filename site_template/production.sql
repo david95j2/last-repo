@@ -18,5 +18,5 @@ passwd = 'admin',
 # 글 전부삭제
 TRUNCATE article;
 
-SELECT * FROM `member`
+SELECT * FROM `member`;
 SELECT * FROM article;

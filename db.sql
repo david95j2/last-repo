@@ -7,7 +7,7 @@ DESC testtest;
 ALTER TABLE testtest MODIFY COLUMN id INT(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT;
 ALTER TABLE testtest MODIFY COLUMN title CHAR(40) NOT NULL;
 ALTER TABLE testtest MODIFY COLUMN `body` VARCHAR(400) NOT NULL;
-ALTER TABLE testtest MODIFY COLUMN regDate DATE NOT NULL;
+ALTER TABLE testtest MODIFY COLUMN regDate DATETIME NOT NULL;
 
 
 INSERT INTO testtest
@@ -92,7 +92,7 @@ SHOW TABLES;
 ########## article 생성 #############
 CREATE TABLE article(
 id INT(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-regDate DATE NOT NULL, updateDate DATE NOT NULL, 
+regDate DATETIME NOT NULL, updateDate DATETIME NOT NULL, 
 title CHAR(200) NOT NULL, `body` TEXT NOT NULL,
 memberId INT(10) UNSIGNED NOT NULL, boardId INT(10) UNSIGNED NOT NULL,
 hit INT(10) UNSIGNED NOT NULL, `like` INT(10) UNSIGNED NOT NULL
@@ -194,8 +194,8 @@ SHOW TABLES;
 ########## member 생성 ##########
 CREATE TABLE `member`(
 id INT(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-regDate DATE NOT NULL,
-updateDate DATE NOT NULL,
+regDate DATETIME NOT NULL,
+updateDate DATETIME NOT NULL,
 userId CHAR(30) NOT NULL, passwd VARCHAR(50) NOT NULL, `name` CHAR(30) NOT NULL
 );
 
@@ -235,8 +235,8 @@ SELECT * FROM `member`;
 ########## board 생성 ##########
 CREATE TABLE board(
 id INT(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-regDate DATE NOT NULL,
-updateDate DATE NOT NULL, 
+regDate DATETIME NOT NULL,
+updateDate DATETIME NOT NULL, 
 `name` CHAR(20) NOT NULL,
 `code` CHAR(20) NOT NULL
 );
@@ -265,8 +265,8 @@ SELECT * FROM ( SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, a.* FROM article a,
 	  
 ########## articleReply 생성 ##########
 CREATE TABLE articleReply(
-regDate DATE NOT NULL,
-updateDate DATE NOT NULL,
+regDate DATETIME NOT NULL,
+updateDate DATETIME NOT NULL,
 replyId INT(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
 articleId INT(10) UNSIGNED NOT NULL,
 reply CHAR(200) NOT NULL,
@@ -376,4 +376,3 @@ SELECT * FROM article;
 UPDATE article SET `body` = '# 자바기본문법\r\n```java\r\nint a = 10;\r\nint b = 20;\r\nint c = a + b;\r\n```'
 WHERE id = '2'; 
 
-SELECT * FROM board
