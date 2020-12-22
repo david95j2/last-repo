@@ -221,12 +221,15 @@ a {
 /* 하단바 끝 */
 
 /* 게시물 리스트 시작 */
-:root { -
-	-article-list__cell-id__width: 100px; -
-	-article-list__cell-reg-date__width: 220px; -
-	-article-list__cell-writer__width: 150px; -
-	-article-list__cell-title__width: calc(100% - var(- -article-list__cell-id__width)-
+:root { 
+	--article-list__cell-id__width: 100px; 
+	--article-list__cell-reg-date__width: 220px; 
+	--article-list__cell-writer__width: 150px; 
+	--article-list__cell-title__width: calc(100% - var(- -article-list__cell-id__width) -
 		 var(- -article-list__cell-reg-date__width)- var(- -article-list__cell-writer__width));
+}
+.article-list {
+	margin-left: 50px;
 }
 
 .article-list>*>div {
@@ -256,19 +259,19 @@ a {
 }
 
 .article-list__cell-id {
-	width: var(- -article-list__cell-id__width);
+	width: var(--article-list__cell-id__width);
 }
 
 .article-list__cell-reg-date {
-	width: var(- -article-list__cell-reg-date__width);
+	width: var(--article-list__cell-reg-date__width);
 }
 
 .article-list__cell-writer {
-	width: var(- -article-list__cell-writer__width);
+	width: var(--article-list__cell-writer__width);
 }
 
 .article-list__cell-title {
-	width: var(- -article-list__cell-title__width);
+	width: var(--article-list__cell-title__width);
 }
 
 .article-list__cell-title {
