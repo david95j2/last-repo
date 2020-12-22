@@ -338,11 +338,13 @@ a {
 .ft-si-30p {
   font-size:30px;
   margin-left:15px;
+  color:white;
+  text-shadow:1px 2px 1px rgba(0,0,0);
 }
 .word {
   margin-top:70px;
   margin-left:100px;
-  text-shadow:0 2px 1px rgba(0,0,0);
+  text-shadow:1px 2px 1px rgba(0,0,0);
 }
 .word-top {
   font-size:45px;
