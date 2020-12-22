@@ -325,3 +325,38 @@ a {
 }
 
 /* 게시물 상세 끝 */
+
+/* 여기서 시작 */
+.flex-grow-1 {
+  background : url(https://images.unsplash.com/photo-1516703197987-c6bff53d2112?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTk2fHxtYWNib29rfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60) no-repeat center center;
+  background-size: cover;
+}
+
+.mg-lf-15p {
+  margin-left:15px;
+}
+
+.ft-si-30p {
+  font-size:30px;
+  margin-left:15px;
+}
+.word {
+  margin-top:70px;
+  margin-left:100px;
+  text-shadow:0 2px 1px rgba(0,0,0);
+}
+.word-top {
+  font-size:45px;
+  color:white;
+}
+.word-body {
+  font-size:2rem;
+  margin-top:20px;
+  color:white;
+}
+.word-bottom {
+  font-size:25px;
+  margin-top:20px;
+  margin-left:300px;
+  color:white;
+}
