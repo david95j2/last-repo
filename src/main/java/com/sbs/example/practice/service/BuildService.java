@@ -21,10 +21,10 @@ public class BuildService {
 		System.out.println("site/article 폴더 생성");
 		Util.mkdirs("site");
 
+		Util.copy("site_template/favicon.ico", "site/favicon.ico");
 		Util.copy("site_template/app.css", "site/app.css");
 		Util.copy("site_template/app.js", "site/app.js");
-		Util.copy("site_template/connectdevelop-brands.svg", "site/connectdevelop-brands.svg");
-		
+
 		buildIndexPage();
 		buildArticleListPages();
 		buildArticleDetailPages();
@@ -190,7 +190,6 @@ public class BuildService {
 	private void buildArticleDetailPages() {
 		List<Board> boards = articleService.getForPrintBoards();
 
-		String head = getHeadHtml("article_detail");
 		String bodyTemplate = Util.getFileContents("site_template/article_detail.html");
 		String foot = Util.getFileContents("site_template/foot.html");
 
@@ -202,6 +201,9 @@ public class BuildService {
 			// 0, 1, 2, 3, 4
 			for (int i = 0; i < articles.size(); i++) {
 				Article article = articles.get(i);
+				
+				String head = getHeadHtml("article_detail", article);
+				
 				Article prevArticle = null;
 				int prevArticleIndex = i + 1;
 				int prevArticleId = 0;
@@ -223,12 +225,15 @@ public class BuildService {
 				StringBuilder sb = new StringBuilder();
 
 				sb.append(head);
+				
+				String articleBodyForPrint = article.body;
+				articleBodyForPrint = articleBodyForPrint.replaceAll("script", "<!--REPLACE:script-->");
 
 				String body = bodyTemplate.replace("${article-detail__title}", article.title);
 				body = body.replace("${article-detail__board-name}", article.extra__boardName);
 				body = body.replace("${article-detail__reg-date}", article.regDate);
 				body = body.replace("${article-detail__writer}", article.extra__name);
-				body = body.replace("${article-detail__body}", article.body);
+				body = body.replace("${article-detail__body}", articleBodyForPrint);
 				body = body.replace("${article-detail__link-prev-article-url}", getArticleDetailFileName(prevArticleId));
 				body = body.replace("${article-detail__link-prev-article-title-attr}", prevArticle != null ? prevArticle.title : "");
 				body = body.replace("${article-detail__link-prev-article-class-addi}", prevArticleId == 0 ? "none" : "");
@@ -256,8 +261,12 @@ public class BuildService {
 	private String getArticleDetailFileName(int id) {
 		return "article_detail_" + id + ".html";
 	}
-
+	
 	private String getHeadHtml(String pageName) {
+		return getHeadHtml(pageName, null);
+	}
+
+	private String getHeadHtml(String pageName, Object relObj) {
 		String head = Util.getFileContents("site_template/head.html");
 
 		StringBuilder boardMenuContentHtml = new StringBuilder();
@@ -283,7 +292,35 @@ public class BuildService {
 
 		head = head.replace("${title-bar__content}", titleBarContentHtml);
 
+		String pageTitle = getPageTitle(pageName, relObj);
+		
+		head = head.replace("${page-title}", pageTitle);
+
 		return head;
+	}
+
+	private String getPageTitle(String pageName, Object relObj) {
+		StringBuilder sb = new StringBuilder();
+		
+		String forPrintPageName = pageName;
+		
+		if ( forPrintPageName.equals("index") ) {
+			forPrintPageName = "home";
+		}
+		
+		forPrintPageName = forPrintPageName.toUpperCase();
+		forPrintPageName = forPrintPageName.replaceAll("_", " ");
+		
+		sb.append("Clean Code | ");
+		sb.append(forPrintPageName);
+		
+		if ( relObj instanceof Article ) {
+			Article article = (Article) relObj;
+			
+			sb.insert(0, article.title + " | ");
+		}
+		
+		return sb.toString();
 	}
 
 	private String getTitleBarContentByPageName(String pageName) {
@@ -296,9 +333,7 @@ public class BuildService {
 		} else if (pageName.startsWith("article_list_notice")) {
 			return "<i class=\"fas fa-flag\"></i> <span>NOTICE LIST</span>";
 		} else if (pageName.startsWith("article_list_")) {
-			return "<i class=\"fas fa-clipboard-list\"></i> <span>ARTICLE LIST</span>";
-		} else if (pageName.startsWith("article_list_it")) {
-			return "<i class=\"fas fa-microscope\"></i> <span>IT LIST</span>";
+			return "<i class=\"fas fa-clipboard-list\"></i> <span>NOTICE LIST</span>";
 		}
 
 		return "";
