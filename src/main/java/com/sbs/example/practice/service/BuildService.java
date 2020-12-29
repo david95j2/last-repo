@@ -1,5 +1,10 @@
 package com.sbs.example.practice.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import com.sbs.example.practice.container.Container;
@@ -20,12 +25,15 @@ public class BuildService {
 	public void buildSite() {
 		System.out.println("site/article 폴더 생성");
 		Util.mkdirs("site");
-
+		
 		Util.copy("site_template/favicon.ico", "site/favicon.ico");
+		
 		Util.copy("site_template/app.css", "site/app.css");
+		Util.copy("site_template/common.css", "site/common.css");
 		Util.copy("site_template/app.js", "site/app.js");
-
-		buildIndexPage();
+		
+		/*
+		buildIndexPage(); */
 		buildArticleListPages();
 		buildArticleDetailPages();
 	}
@@ -331,9 +339,9 @@ public class BuildService {
 		} else if (pageName.startsWith("article_list_free")) {
 			return "<i class=\"fab fa-free-code-camp\"></i> <span>FREE LIST</span>";
 		} else if (pageName.startsWith("article_list_notice")) {
-			return "<i class=\"fas fa-flag\"></i> <span>NOTICE LIST</span>";
+			return "<i class=\"fas fa-flag\"></i> <span>Java LIST</span>";
 		} else if (pageName.startsWith("article_list_")) {
-			return "<i class=\"fas fa-clipboard-list\"></i> <span>NOTICE LIST</span>";
+			return "<i class=\"fas fa-clipboard-list\"></i> <span>Java LIST</span>";
 		}
 
 		return "";
