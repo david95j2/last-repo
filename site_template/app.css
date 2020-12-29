@@ -311,11 +311,11 @@ header .logo a{width: 171px; height: 56px; background: url(../images/Top_logo_wh
 	display: flex;
 }
 
-.article-list>header>div>div {
+.article-list>section>div>div {
 	position: relative;
 }
 
-.article-list>header>div>div:not (:last-child )::after {
+.article-list>section>div>div:not (:last-child )::after {
 	content: "";
 	position: absolute;
 	top: 50%;
@@ -324,6 +324,9 @@ header .logo a{width: 171px; height: 56px; background: url(../images/Top_logo_wh
 	width: 1px;
 	height: 10px;
 	background-color: black;
+}
+.article-list>section>div>div>a {
+	text-decoration: none;
 }
 
 .article-list>*>div>div {
