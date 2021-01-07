@@ -18,7 +18,7 @@ header nav ul li a:hover, header nav ul li a.active{
     color: #c7b299;
 }
 
-header .logo a{width: 171px; height: 56px; background: url(../images/Top_logo_white.png) no-repeat;
+header .logo a{width: 171px; height: 56px; background: url(../images/logo_test_white.png) no-repeat;
 display: block; text-indent: -9999em;}
 
 .toggle {display: none;}
