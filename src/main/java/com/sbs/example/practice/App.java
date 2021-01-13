@@ -1,53 +1,50 @@
 package com.sbs.example.practice;
 
+import java.util.Scanner;
+
 import com.sbs.example.practice.container.Container;
-import com.sbs.example.practice.controller.ArticleController;
-import com.sbs.example.practice.controller.BuildController;
 import com.sbs.example.practice.controller.Controller;
-import com.sbs.example.practice.controller.MemberController;
+import com.sbs.example.mysqlUtil.MysqlUtil;
 
 public class App {
-	private MemberController memberController;
-	private ArticleController articleController;
-	private BuildController buildController;
-
-	public App() {
-		memberController = Container.memberController;
-		articleController = Container.articleController;
-		buildController= Container.buildController;
-		getTestData();
-	}
-
-	private void getTestData() {
-		
-	}
-
 	public void run() {
+		Scanner sc = Container.sc;
+
 		while (true) {
-			System.out.printf("명령어 : ");
-			String cmd = Container.sc.nextLine();
+			System.out.printf("명령어) ");
+			String cmd = sc.nextLine();
+
+			MysqlUtil.setDBInfo("127.0.0.1", "sbsst", "sbs123414", "textBoard2");
+
+			boolean needToExit = false;
+
 			if (cmd.equals("system exit")) {
-				System.out.println("프로그램 종료");
+				System.out.println("== 시스템 종료 ==");
+				needToExit = true;
+			} else {
+				Controller controller = getControllerByCmd(cmd);
+				if (controller != null) {
+					controller.run(cmd);
+				}
+			}
+
+			MysqlUtil.closeConnection();
+
+			if (needToExit) {
 				break;
 			}
-			Controller controller = whatKindOfController(cmd);
-			try {
-				controller.run(cmd);
-			} catch (NullPointerException e) {
-				System.out.println("알 수 없는 명령어");
-				continue;
-			}
 		}
 	}
 
-	private Controller whatKindOfController(String cmd) {
-		if (cmd.startsWith("member ")) {
-			return memberController;
-		} else if (cmd.startsWith("article ")) {
-			return articleController;
-		} else if (cmd.startsWith("build")) {
-			return buildController;
+	private Controller getControllerByCmd(String cmd) {
+		if (cmd.startsWith("article ")) {
+			return Container.articleController;
+		} else if (cmd.startsWith("member ")) {
+			return Container.memberController;
+		} else if (cmd.startsWith("build ")) {
+			return Container.buildController;
 		}
+
 		return null;
 	}
 }

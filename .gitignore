@@ -3,5 +3,4 @@
 .settings/
 bin/
 site/
-test/
-lib/
+target/

@@ -2,40 +2,34 @@ package com.sbs.example.practice.session;
 
 public class Session {
 	private int loginedMemberId;
-	private int selectedBoardId;
-	
+	private String currentBoardCode;
+
 	public Session() {
-		loginedMemberId=0;
-		// 자유 게시판을 기본 선택으로 설정한다.
-		selectedBoardId=2;
+		// 공지사항을 기본 선택된 게시판으로 지정
+		currentBoardCode = "notice";
 	}
-	// 로그인
-		public boolean login() {
-			return loginedMemberId != 0;
-		}
-		
-		// 로그아웃
-		public boolean logout()	{
-			return !login();
-		}
-		
-		// 로그인 넘버값 세팅
-		public void setLogInId(int id) {
-			loginedMemberId=id;
-		}
-		
-		// 로그인 넘버 받기
-		public int getLoginedMemberId() {
-			return loginedMemberId;
-		}
-		
-		// 게시판 넘버값 세팅
-		public void setSelectBoard(int id) {
-			selectedBoardId=id;
-		}
-		
-		// 게시판 넘버값 받기
-		public int getBoardId() {
-			return selectedBoardId;
-		}
+
+	public int getLoginedMemberId() {
+		return loginedMemberId;
+	}
+
+	public void logout() {
+		loginedMemberId = 0;
+	}
+
+	public void login(int id) {
+		loginedMemberId = id;
+	}
+
+	public boolean isLogined() {
+		return loginedMemberId > 0;
+	}
+
+	public String getCurrentBoardCode() {
+		return currentBoardCode;
+	}
+	
+	public void setCurrentBoardCode(String boardCode) {
+		this.currentBoardCode = boardCode;
+	}
 }

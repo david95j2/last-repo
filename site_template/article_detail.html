@@ -28,13 +28,23 @@
 				<div class="article-detail__board-name">${article-detail__board-name}</div>
 				<div class="article-detail__reg-date">${article-detail__reg-date}</div>
 				<div class="article-detail__writer">${article-detail__writer}</div>
+				<div class="article-detail__hit-count">조회수 : ${article-detail__hit-count}</div>
+				<div class="article-detail__likes-count">추천수 : ${article-detail__likes-count}</div>
+				<div class="article-detail__comments-count">댓글수 : ${article-detail__comments-count}</div>
 			</div>
 
-			<div class="article-detail__body main-font">${article-detail__body}</div>
+			<script type="text/x-template">
+${article-detail__body}
+			</script>
+			<div class="article-detail__body main-font toast-ui-viewer"></div>
 
 			<div class="article-detail__reply-box">
 				<div id="disqus_thread"></div>
 				<script>
+					var disqus_config = function () {
+				        this.page.url = 'https://${site-domain}/${file-name}';
+				        this.page.identifier = '${file-name}';
+				    };
 					(function() { // DON'T EDIT BELOW THIS LINE
 						var d = document, s = d.createElement('script');
 						s.src = 'https://my-ssg-1.disqus.com/embed.js';
@@ -43,8 +53,8 @@
 					})();
 				</script>
 				<noscript>
-					Please enable JavaScript to view the <a
-						href="https://disqus.com/?ref_noscript">comments powered by
+					Please enable JavaScript to view the
+					<a href="https://disqus.com/?ref_noscript">comments powered by
 						Disqus.</a>
 				</noscript>
 			</div>
@@ -53,7 +63,8 @@
 				<a title="${article-detail__link-prev-article-title-attr}"
 					href="${article-detail__link-prev-article-url}"
 					class="hover-underline ${article-detail__link-prev-article-class-addi}">&lt;
-					이전글</a> <a href="${article-detail__link-list-url}"
+					이전글</a>
+				<a href="${article-detail__link-list-url}"
 					class="hover-underline ${article-detail__link-list-class-addi}">목록</a>
 				<a title="${article-detail__link-next-article-title-attr}"
 					href="${article-detail__link-next-article-url}"
@@ -63,3 +74,4 @@
 		</div>
 	</div>
 </section>
+

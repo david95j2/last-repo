@@ -10,29 +10,14 @@ public class Article {
 	public String body;
 	public int memberId;
 	public int boardId;
-	public int hit;
-	public int like;
-	
-	public double extra__rownum;
-	public String extra__name;
+	public int likesCount;
+	public int commentsCount;
+	public int hitCount;
+
+	public String extra__writer;
 	public String extra__boardName;
 	public String extra__boardCode;
 
-	public Article() {
-		
-	}
-	
-	public Article(int id, String regDate, String updateDate, String title, String body, int memberId,
-			int boardId) {
-		this.id=id;
-		this.regDate=regDate;
-		this.updateDate=updateDate;
-		this.title=title;
-		this.body=body;
-		this.memberId=memberId;
-		this.boardId=boardId;
-	}
-	
 	public Article(Map<String, Object> map) {
 		this.id = (int) map.get("id");
 		this.regDate = (String) map.get("regDate");
@@ -41,8 +26,12 @@ public class Article {
 		this.body = (String) map.get("body");
 		this.memberId = (int) map.get("memberId");
 		this.boardId = (int) map.get("boardId");
-		if (map.containsKey("extra__name")) {
-			this.extra__name = (String) map.get("extra__name");
+		this.likesCount = (int) map.get("likesCount");
+		this.commentsCount = (int) map.get("commentsCount");
+		this.hitCount = (int) map.get("hitCount");
+
+		if (map.containsKey("extra__writer")) {
+			this.extra__writer = (String) map.get("extra__writer");
 		}
 
 		if (map.containsKey("extra__boardName")) {
@@ -56,11 +45,8 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", regDate=" + regDate + ", updateDate=" + updateDate + ", title=" + title
-				+ ", body=" + body + ", memberId=" + memberId + ", boardId=" + boardId + ", hit=" + hit + ", like="
-				+ like + ", extra__rownum=" + extra__rownum + ", extra__name=" + extra__name + ", extra__boardName="
-				+ extra__boardName + ", extra__boardCode=" + extra__boardCode + "]";
+		return "Article [id=" + id + ", regDate=" + regDate + ", updateDate=" + updateDate + ", title=" + title + ", body=" + body + ", memberId=" + memberId + ", boardId=" + boardId + ", likesCount=" + likesCount + ", commentsCount=" + commentsCount
+				+ ", hitCount=" + hitCount + ", extra__writer=" + extra__writer + ", extra__boardName=" + extra__boardName + ", extra__boardCode=" + extra__boardCode + "]";
 	}
 
-	
 }
