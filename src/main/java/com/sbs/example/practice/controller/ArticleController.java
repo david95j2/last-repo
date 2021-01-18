@@ -3,7 +3,7 @@ package com.sbs.example.practice.controller;
 import java.util.List;
 import java.util.Scanner;
 
-import com.sbs.example.practice.container.Container;
+import com.sbs.example.practice.Container;
 import com.sbs.example.practice.dto.Article;
 import com.sbs.example.practice.dto.Board;
 import com.sbs.example.practice.dto.Member;
@@ -19,7 +19,7 @@ public class ArticleController extends Controller {
 		memberService = Container.memberService;
 	}
 
-	public void run(String cmd) {
+	public void doCommand(String cmd) {
 		if (cmd.startsWith("article makeBoard")) {
 			doMakeBoard(cmd);
 		}
@@ -47,13 +47,13 @@ public class ArticleController extends Controller {
 		List<Board> boards = articleService.getForPrintBoards();
 
 		for (Board board : boards) {
-			int articlesCount = articleService.getArticlesCount(board.id);
-			System.out.printf("%d / %s / %s / %s / %d\n", board.id, board.regDate, board.code, board.name,
+			int articlesCount = articleService.getArticlesCount(board.getId());
+			System.out.printf("%d / %s / %s / %s / %d\n", board.getId(), board.getRegDate(), board.getCode(), board.getName(),
 					articlesCount);
 		}
 
 		System.out.printf("게시판 코드 : ");
-		String inputedBoardCode = Container.sc.nextLine().trim();
+		String inputedBoardCode = Container.scanner.nextLine().trim();
 
 		Board board = articleService.getBoardByCode(inputedBoardCode);
 
@@ -62,9 +62,9 @@ public class ArticleController extends Controller {
 			return;
 		}
 
-		Container.session.setCurrentBoardCode(board.code);
+		Container.session.setCurrentBoardCode(board.getCode());
 
-		System.out.printf("%s 게시판으로 변경합니다.\n", board.name);
+		System.out.printf("%s 게시판으로 변경합니다.\n", board.getName());
 	}
 
 	private void doMakeBoard(String cmd) {
@@ -82,7 +82,7 @@ public class ArticleController extends Controller {
 			return;
 		}
 
-		Scanner sc = Container.sc;
+		Scanner sc = Container.scanner;
 
 		System.out.printf("이름 : ");
 		String name = sc.nextLine();
@@ -122,19 +122,19 @@ public class ArticleController extends Controller {
 			return;
 		}
 
-		if (article.memberId != Container.session.getLoginedMemberId()) {
+		if (article.getMemberId() != Container.session.getLoginedMemberId()) {
 			System.out.println("권한이 없습니다.");
 			return;
 		}
 
-		Member member = memberService.getMemberById(article.memberId);
-		String writer = member.name;
+		Member member = memberService.getMemberById(article.getMemberId());
+		String writer = member.getName();
 
-		System.out.printf("번호 : %d\n", article.id);
-		System.out.printf("작성날짜 : %s\n", article.regDate);
+		System.out.printf("번호 : %d\n", article.getId());
+		System.out.printf("작성날짜 : %s\n", article.getRegDate());
 		System.out.printf("작성자 : %s\n", writer);
 
-		Scanner sc = Container.sc;
+		Scanner sc = Container.scanner;
 
 		System.out.printf("제목 : ");
 		String title = sc.nextLine();
@@ -155,7 +155,7 @@ public class ArticleController extends Controller {
 			return;
 		}
 
-		Scanner sc = Container.sc;
+		Scanner sc = Container.scanner;
 
 		System.out.printf("제목 : ");
 		String title = sc.nextLine();
@@ -188,7 +188,7 @@ public class ArticleController extends Controller {
 			return;
 		}
 
-		if (article.memberId != Container.session.getLoginedMemberId()) {
+		if (article.getMemberId() != Container.session.getLoginedMemberId()) {
 			System.out.println("권한이 없습니다.");
 			return;
 		}
@@ -200,17 +200,17 @@ public class ArticleController extends Controller {
 	private void showList(String cmd) {
 		String boardCode = Container.session.getCurrentBoardCode();
 		Board board = articleService.getBoardByCode(boardCode);
-		System.out.printf("== %s 게시물 리스트 ==\n", board.name);
+		System.out.printf("== %s 게시물 리스트 ==\n", board.getName());
 
-		List<Article> articles = articleService.getForPrintArticles(board.id);
+		List<Article> articles = articleService.getForPrintArticles(board.getId());
 
 		System.out.println("번호 / 작성 / 수정 / 작성자 / 제목");
 
 		for (Article article : articles) {
-			String writer = article.extra__writer;
+			String writer = article.getExtra__writer();
 
-			System.out.printf("%d / %s / %s / %s / %s\n", article.id, article.regDate, article.updateDate, writer,
-					article.title);
+			System.out.printf("%d / %s / %s / %s / %s\n", article.getId(), article.getRegDate(), article.getUpdateDate(), writer,
+					article.getTitle());
 		}
 	}
 
@@ -226,15 +226,15 @@ public class ArticleController extends Controller {
 			return;
 		}
 
-		Member member = memberService.getMemberById(article.memberId);
-		String writer = member.name;
+		Member member = memberService.getMemberById(article.getMemberId());
+		String writer = member.getName();
 
-		System.out.printf("번호 : %d\n", article.id);
-		System.out.printf("작성날짜 : %s\n", article.regDate);
-		System.out.printf("수정날짜 : %s\n", article.updateDate);
+		System.out.printf("번호 : %d\n", article.getId());
+		System.out.printf("작성날짜 : %s\n", article.getRegDate());
+		System.out.printf("수정날짜 : %s\n", article.getUpdateDate());
 		System.out.printf("작성자 : %s\n", writer);
-		System.out.printf("제목 : %s\n", article.title);
-		System.out.printf("내용 : %s\n", article.body);
+		System.out.printf("제목 : %s\n", article.getTitle());
+		System.out.printf("내용 : %s\n", article.getBody());
 	}
 
 }

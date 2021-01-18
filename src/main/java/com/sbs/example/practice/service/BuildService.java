@@ -1,12 +1,12 @@
 package com.sbs.example.practice.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sbs.example.practice.container.Container;
+import com.sbs.example.practice.Container;
 import com.sbs.example.practice.dto.Article;
 import com.sbs.example.practice.dto.Board;
+import com.sbs.example.practice.dto.Tag;
 import com.sbs.example.practice.util.Util;
 
 public class BuildService {
@@ -23,20 +23,27 @@ public class BuildService {
 		System.out.println("site/article 폴더 생성");
 		Util.mkdirs("site");
 
-		Util.copyDir("site_template/images", "site/images");
+		Util.copyDir("site_template/img", "site/img");
 
+		Util.copy("site_template/favicon.ico", "site/favicon.ico");
 		Util.copy("site_template/app.css", "site/app.css");
 		Util.copy("site_template/app.js", "site/app.js");
 		
 		loadDataFromDisqus();
-		loadDataFromGa4Data();
-		
-		/*
+		//loadDataFromGa4Data();
+
 		buildIndexPage();
-		*/
+		//buildArticleTagPage();
 		buildArticleSearchPage();
 		buildArticleListPages();
 		buildArticleDetailPages();
+	}
+
+	public void buildArticleTagPage() {
+		Map<String, List<Article>> articlesByTagMap = Container.articleService.getArticlesByTagMap();
+		
+		String jsonText = Util.getJsonText(articlesByTagMap);
+		Util.writeFile("site/article_tag.json", jsonText);
 	}
 
 	private void buildArticleSearchPage() {
@@ -74,7 +81,7 @@ public class BuildService {
 		StringBuilder sb = new StringBuilder();
 
 		// 헤더 시작
-		sb.append(getHeadHtml("article_list_" + board.code));
+		sb.append(getHeadHtml("article_list_" + board.getCode()));
 
 		// 바디 시작
 		String bodyTemplate = Util.getFileContents("site_template/article_list.html");
@@ -92,15 +99,15 @@ public class BuildService {
 		for (int i = start; i <= end; i++) {
 			Article article = articles.get(i);
 
-			String link = getArticleDetailFileName(article.id);
+			String link = getArticleDetailFileName(article.getId());
 
 			mainContent.append("<div>");
-			mainContent.append("<div class=\"article-list__cell-id\">" + article.id + "</div>");
-			mainContent.append("<div class=\"article-list__cell-reg-date\">" + article.regDate + "</div>");
-			mainContent.append("<div class=\"article-list__cell-writer\">" + article.extra__writer + "</div>");
+			mainContent.append("<div class=\"article-list__cell-id\">" + article.getId() + "</div>");
+			mainContent.append("<div class=\"article-list__cell-reg-date\">" + article.getRegDate() + "</div>");
+			mainContent.append("<div class=\"article-list__cell-writer\">" + article.getExtra__writer() + "</div>");
 			mainContent.append("<div class=\"article-list__cell-title\">");
 
-			mainContent.append("<a href=\"" + link + "\" class=\"hover-underline\">" + article.title + "</a>");
+			mainContent.append("<a href=\"" + link + "\" class=\"hover-underline\">" + article.getTitle() + "</a>");
 
 			mainContent.append("</div>");
 			mainContent.append("</div>");
@@ -182,7 +189,7 @@ public class BuildService {
 	}
 
 	private String getArticleListFileName(Board board, int page) {
-		return getArticleListFileName(board.code, page);
+		return getArticleListFileName(board.getCode(), page);
 	}
 
 	private String getArticleListFileName(String boardCode, int page) {
@@ -196,7 +203,7 @@ public class BuildService {
 		int pageBoxMenuSize = 10;
 
 		for (Board board : boards) {
-			List<Article> articles = articleService.getForPrintArticles(board.id);
+			List<Article> articles = articleService.getForPrintArticles(board.getId());
 			int articlesCount = articles.size();
 			int totalPage = (int) Math.ceil((double) articlesCount / itemsInAPage);
 
@@ -230,7 +237,7 @@ public class BuildService {
 		String foot = Util.getFileContents("site_template/foot.html");
 
 		for (Board board : boards) {
-			List<Article> articles = articleService.getForPrintArticles(board.id);
+			List<Article> articles = articleService.getForPrintArticles(board.getId());
 
 			for (int i = 0; i < articles.size(); i++) {
 				Article article = articles.get(i);
@@ -243,7 +250,7 @@ public class BuildService {
 
 				if (prevArticleIndex < articles.size()) {
 					prevArticle = articles.get(prevArticleIndex);
-					prevArticleId = prevArticle.id;
+					prevArticleId = prevArticle.getId();
 				}
 
 				Article nextArticle = null;
@@ -252,43 +259,43 @@ public class BuildService {
 
 				if (nextArticleIndex >= 0) {
 					nextArticle = articles.get(nextArticleIndex);
-					nextArticleId = nextArticle.id;
+					nextArticleId = nextArticle.getId();
 				}
 
 				StringBuilder sb = new StringBuilder();
 
 				sb.append(head);
 
-				String articleBodyForPrint = article.body;
-				articleBodyForPrint = articleBodyForPrint.replaceAll("script", "<!--REPLACE:script-->");
+				String articleBodyForPrint = article.getBody();
+				articleBodyForPrint = articleBodyForPrint.replaceAll("script", "t-script");
 
-				String body = bodyTemplate.replace("${article-detail__title}", article.title);
-				body = body.replace("${article-detail__board-name}", article.extra__boardName);
-				body = body.replace("${article-detail__reg-date}", article.regDate);
-				body = body.replace("${article-detail__writer}", article.extra__writer);
+				String body = bodyTemplate.replace("${article-detail__title}", article.getTitle());
+				body = body.replace("${article-detail__board-name}", article.getExtra__boardName());
+				body = body.replace("${article-detail__reg-date}", article.getRegDate());
+				body = body.replace("${article-detail__writer}", article.getExtra__writer());
 
-				body = body.replace("${article-detail__likes-count}", article.likesCount + "");
-				body = body.replace("${article-detail__comments-count}", article.commentsCount + "");
-				body = body.replace("${article-detail__hit-count}", article.hitCount + "");
+				body = body.replace("${article-detail__likes-count}", article.getLikesCount() + "");
+				body = body.replace("${article-detail__comments-count}", article.getCommentsCount() + "");
+				body = body.replace("${article-detail__hit-count}", article.getHitCount() + "");
 
 				body = body.replace("${article-detail__body}", articleBodyForPrint);
 				body = body.replace("${article-detail__link-prev-article-url}", getArticleDetailFileName(prevArticleId));
-				body = body.replace("${article-detail__link-prev-article-title-attr}", prevArticle != null ? prevArticle.title : "");
+				body = body.replace("${article-detail__link-prev-article-title-attr}", prevArticle != null ? prevArticle.getTitle() : "");
 				body = body.replace("${article-detail__link-prev-article-class-addi}", prevArticleId == 0 ? "none" : "");
-				body = body.replace("${article-detail__link-list-url}", getArticleListFileName(article.extra__boardCode, 1));
+				body = body.replace("${article-detail__link-list-url}", getArticleListFileName(article.getExtra__boardCode(), 1));
 				body = body.replace("${article-detail__link-list-class-addi}", "");
 				body = body.replace("${article-detail__link-next-article-url}", getArticleDetailFileName(nextArticleId));
-				body = body.replace("${article-detail__link-next-article-title-attr}", nextArticle != null ? nextArticle.title : "");
+				body = body.replace("${article-detail__link-next-article-title-attr}", nextArticle != null ? nextArticle.getTitle() : "");
 				body = body.replace("${article-detail__link-next-article-class-addi}", nextArticleId == 0 ? "none" : "");
 
 				body = body.replace("${site-domain}", "ssg.yadah.kr");
-				body = body.replace("${file-name}", getArticleDetailFileName(article.id));
+				body = body.replace("${file-name}", getArticleDetailFileName(article.getId()));
 
 				sb.append(body);
 
 				sb.append(foot);
 
-				String fileName = getArticleDetailFileName(article.id);
+				String fileName = getArticleDetailFileName(article.getId());
 
 				String filePath = "site/" + fileName;
 
@@ -319,7 +326,7 @@ public class BuildService {
 
 			boardMenuContentHtml.append("<a href=\"" + link + "\" class=\"block\">");
 
-			boardMenuContentHtml.append(getTitleBarContentByPageName("article_list_" + board.code));
+			boardMenuContentHtml.append(getTitleBarContentByPageName("article_list_" + board.getCode()));
 
 			boardMenuContentHtml.append("</a>");
 
@@ -346,8 +353,8 @@ public class BuildService {
 
 		if (relObj instanceof Article) {
 			Article article = (Article) relObj;
-			siteSubject = article.title;
-			siteDescription = article.body;
+			siteSubject = article.getTitle();
+			siteDescription = article.getBody();
 			siteDescription = siteDescription.replaceAll("[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]", "");
 		}
 
@@ -381,7 +388,7 @@ public class BuildService {
 		if (relObj instanceof Article) {
 			Article article = (Article) relObj;
 
-			sb.insert(0, article.title + " | ");
+			sb.insert(0, article.getTitle() + " | ");
 		}
 
 		return sb.toString();

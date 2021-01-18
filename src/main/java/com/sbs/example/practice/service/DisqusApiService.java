@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sbs.example.practice.container.Container;
+import com.sbs.example.practice.Container;
 import com.sbs.example.practice.apidto.DisqusApiDataListThread;
 import com.sbs.example.practice.dto.Article;
 import com.sbs.example.practice.util.Util;
 
 public class DisqusApiService {
 	public Map<String, Object> getArticleData(Article article) {
-		String fileName = Container.buildService.getArticleDetailFileName(article.id);
+		String fileName = Container.buildService.getArticleDetailFileName(article.getId());
 		String url = "https://disqus.com/api/3.0/forums/listThreads.json";
 		DisqusApiDataListThread disqusApiDataListThread = (DisqusApiDataListThread) Util.callApiResponseTo(
 				DisqusApiDataListThread.class, url, "api_key=" + Container.config.getDisqusApiKey(),
@@ -39,7 +39,7 @@ public class DisqusApiService {
 				int commentsCount = (int) disqusArticleData.get("commentsCount");
 
 				Map<String, Object> modifyArgs = new HashMap<>();
-				modifyArgs.put("id", article.id);
+				modifyArgs.put("id", article.getId());
 				modifyArgs.put("likesCount", likesCount);
 				modifyArgs.put("commentsCount", commentsCount);
 

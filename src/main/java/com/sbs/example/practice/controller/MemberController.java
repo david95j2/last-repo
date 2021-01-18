@@ -2,7 +2,7 @@ package com.sbs.example.practice.controller;
 
 import java.util.Scanner;
 
-import com.sbs.example.practice.container.Container;
+import com.sbs.example.practice.Container;
 import com.sbs.example.practice.dto.Member;
 import com.sbs.example.practice.service.MemberService;
 
@@ -14,7 +14,7 @@ public class MemberController extends Controller {
 		memberService = Container.memberService;
 	}
 
-	public void run(String cmd) {
+	public void doCommand(String cmd) {
 		if (cmd.startsWith("member join")) {
 			doJoin(cmd);
 		} else if (cmd.startsWith("member login")) {
@@ -35,10 +35,10 @@ public class MemberController extends Controller {
 
 		int loginedMemberId = Container.session.getLoginedMemberId();
 		Member member = memberService.getMemberById(loginedMemberId);
-		System.out.printf("번호 : %d\n", member.id);
-		System.out.printf("가입날자 : %s\n", member.regDate);
-		System.out.printf("로그인아이디 : %s\n", member.loginId);
-		System.out.printf("이름 : %s\n", member.name);
+		System.out.printf("번호 : %d\n", member.getId());
+		System.out.printf("가입날자 : %s\n", member.getRegDate());
+		System.out.printf("로그인아이디 : %s\n", member.getLoginId());
+		System.out.printf("이름 : %s\n", member.getName());
 		System.out.printf("회원종류 : %s\n", member.getType());
 	}
 
@@ -62,7 +62,7 @@ public class MemberController extends Controller {
 
 		System.out.println("== 회원가입 ==");
 
-		Scanner sc = Container.sc;
+		Scanner sc = Container.scanner;
 
 		System.out.printf("로그인아이디 : ");
 		String loginId = sc.nextLine().trim();
@@ -114,7 +114,7 @@ public class MemberController extends Controller {
 			return;
 		}
 
-		Scanner sc = Container.sc;
+		Scanner sc = Container.scanner;
 
 		System.out.printf("로그인아이디 : ");
 		String loginId = sc.nextLine().trim();
@@ -139,13 +139,13 @@ public class MemberController extends Controller {
 			return;
 		}
 
-		if (member.loginPw.equals(loginPw) == false) {
+		if (member.getLoginPw().equals(loginPw) == false) {
 			System.out.println("비밀번호가 일치하지 않습니다.");
 			return;
 		}
 
-		Container.session.login(member.id);
+		Container.session.login(member.getId());
 
-		System.out.printf("%s님 환영합니다.\n", member.name);
+		System.out.printf("%s님 환영합니다.\n", member.getName());
 	}
 }

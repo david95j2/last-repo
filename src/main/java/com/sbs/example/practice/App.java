@@ -2,13 +2,12 @@ package com.sbs.example.practice;
 
 import java.util.Scanner;
 
-import com.sbs.example.practice.container.Container;
 import com.sbs.example.practice.controller.Controller;
 import com.sbs.example.mysqlUtil.MysqlUtil;
 
 public class App {
 	public void run() {
-		Scanner sc = Container.sc;
+		Scanner sc = Container.scanner;
 
 		while (true) {
 			System.out.printf("명령어) ");
@@ -24,7 +23,7 @@ public class App {
 			} else {
 				Controller controller = getControllerByCmd(cmd);
 				if (controller != null) {
-					controller.run(cmd);
+					controller.doCommand(cmd);
 				}
 			}
 

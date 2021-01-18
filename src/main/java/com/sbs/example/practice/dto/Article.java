@@ -2,21 +2,24 @@ package com.sbs.example.practice.dto;
 
 import java.util.Map;
 
-public class Article {
-	public int id;
-	public String regDate;
-	public String updateDate;
-	public String title;
-	public String body;
-	public int memberId;
-	public int boardId;
-	public int likesCount;
-	public int commentsCount;
-	public int hitCount;
+import lombok.Data;
 
-	public String extra__writer;
-	public String extra__boardName;
-	public String extra__boardCode;
+@Data
+public class Article {
+	private int id;
+	private String regDate;
+	private String updateDate;
+	private String title;
+	private String body;
+	private int memberId;
+	private int boardId;
+	private int likesCount;
+	private int commentsCount;
+	private int hitCount;
+
+	private String extra__writer;
+	private String extra__boardName;
+	private String extra__boardCode;
 
 	public Article(Map<String, Object> map) {
 		this.id = (int) map.get("id");
@@ -42,11 +45,4 @@ public class Article {
 			this.extra__boardCode = (String) map.get("extra__boardCode");
 		}
 	}
-
-	@Override
-	public String toString() {
-		return "Article [id=" + id + ", regDate=" + regDate + ", updateDate=" + updateDate + ", title=" + title + ", body=" + body + ", memberId=" + memberId + ", boardId=" + boardId + ", likesCount=" + likesCount + ", commentsCount=" + commentsCount
-				+ ", hitCount=" + hitCount + ", extra__writer=" + extra__writer + ", extra__boardName=" + extra__boardName + ", extra__boardCode=" + extra__boardCode + "]";
-	}
-
 }

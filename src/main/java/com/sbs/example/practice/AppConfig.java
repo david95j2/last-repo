@@ -11,7 +11,7 @@ public class AppConfig {
 	}
 
 	public String getDisqusForumName() {
-		return "my-ssg-1";
+		return "my-ssg";
 	}
 
 	public String getGa4PropertyId() {

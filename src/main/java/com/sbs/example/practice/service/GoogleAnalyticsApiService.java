@@ -10,7 +10,7 @@ import com.google.analytics.data.v1alpha.Metric;
 import com.google.analytics.data.v1alpha.Row;
 import com.google.analytics.data.v1alpha.RunReportRequest;
 import com.google.analytics.data.v1alpha.RunReportResponse;
-import com.sbs.example.practice.container.Container;
+import com.sbs.example.practice.Container;
 import com.sbs.example.practice.dao.Ga4DataDao;
 
 public class GoogleAnalyticsApiService {
@@ -28,7 +28,7 @@ public class GoogleAnalyticsApiService {
 					.setEntity(Entity.newBuilder().setPropertyId(ga4PropertyId))
 					.addDimensions(Dimension.newBuilder().setName("pagePath"))
 					.addMetrics(Metric.newBuilder().setName("activeUsers"))
-					.addDateRanges(DateRange.newBuilder().setStartDate("2020-12-01").setEndDate("today")).build();
+					.addDateRanges(DateRange.newBuilder().setStartDate("2020-12-31").setEndDate("today")).build();
 
 			RunReportResponse response = analyticsData.runReport(request);
 
