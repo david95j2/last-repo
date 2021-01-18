@@ -25,7 +25,7 @@ public class BuildService {
 
 		Util.copyDir("site_template/img", "site/img");
 
-		Util.copy("site_template/favicon.ico", "site/favicon.ico");
+		Util.copy("site_template/favicon.ico", "site/favicon.svg");
 		Util.copy("site_template/app.css", "site/app.css");
 		Util.copy("site_template/app.js", "site/app.js");
 		

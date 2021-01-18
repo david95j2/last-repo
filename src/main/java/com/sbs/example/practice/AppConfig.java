@@ -11,7 +11,7 @@ public class AppConfig {
 	}
 
 	public String getDisqusForumName() {
-		return "my-ssg";
+		return "my-ssg-1";
 	}
 
 	public String getGa4PropertyId() {
@@ -31,7 +31,7 @@ public class AppConfig {
 	}
 
 	public String getDbName() {
-		return "textBoard2";
+		return "textBoard";
 	}
 
 }
