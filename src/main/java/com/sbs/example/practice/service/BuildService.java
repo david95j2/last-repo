@@ -25,7 +25,7 @@ public class BuildService {
 
 		Util.copyDir("site_template/img", "site/img");
 
-		Util.copy("site_template/favicon.ico", "site/favicon.svg");
+		Util.copy("site_template/favicon.svg", "site/favicon.svg");
 		Util.copy("site_template/app.css", "site/app.css");
 		Util.copy("site_template/app.js", "site/app.js");
 		
@@ -405,11 +405,17 @@ public class BuildService {
 			return "<i class=\"fab fa-free-code-camp\"></i> <span>FREE LIST</span>";
 		} else if (pageName.startsWith("article_list_notice")) {
 			return "<i class=\"fas fa-flag\"></i> <span>NOTICE LIST</span>";
+		} else if (pageName.startsWith("article_list_JAVA")) {
+			return "<i class=\"fab fa-java\"></i> <span>JAVA LIST</span>";
+		} else if (pageName.startsWith("article_list_MySQL")) {
+			return "<i class=\"fab fa-java\"></i> <span>MySQL LIST</span>";
+		} else if (pageName.startsWith("article_list_JS")) {
+			return "<i class=\"fab fa-js-square\"></i> <span>JS LIST</span>";
 		} else if (pageName.startsWith("article_list_")) {
 			String boardName = pageName.replace("article_list_", "").toUpperCase();
 			return "<i class=\"fas fa-clipboard-list\"></i> <span>" + boardName + " LIST</span>";
 		}
-
+		
 		return "";
 	}
 }
