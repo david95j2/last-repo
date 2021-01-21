@@ -30,7 +30,7 @@
 <meta property="og:title" content="${site-subject}" />
 <meta property="og:description" content="${site-description}" />
 <meta property="og:locale" content="ko_KR" />
-<meta property="og:image" content="${site-main-url}/img/logo/logo_opengraph.png" />
+<meta property="og:image" content="${site-main-url}/images/logo_opengraph.png" />
 <meta property="og:image:alt" content="${site-domain}" />
 <meta property="og:image:width" content="486" />
 <meta property="og:image:height" content="324" />
@@ -42,13 +42,13 @@
 <meta name="twitter:title" content="${site-subject}" />
 <meta name="twitter:site" content="@${site-name}" />
 <meta name="twitter:creator" content="@${site-name}" />
-<meta name="twitter:image" content="/img/logo/logo_opengraph.png">
+<meta name="twitter:image" content="/images/logo_opengraph.png">
 <meta name="twitter:description" content="${site-description}" />
 <!-- GOOGLE+ -->
 <meta itemprop="headline" content="${site-name}" />
 <meta itemprop="name" content="${site-name}" />
 <meta itemprop="description" content="${site-description}" />
-<meta itemprop="image" content="/img/logo/logo_opengraph.png" />
+<meta itemprop="image" content="/images/logo_opengraph.png" />
 
 <title>${page-title}</title>
 
@@ -62,6 +62,24 @@
 
 <!-- 제이쿼리 불러오기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- WebFont -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script defer>
+    WebFont.load({
+        google: {
+          families: ['Montserrat:300,400,700', 'Raleway:300,400,500,600,700,800']
+        }
+    });
+</script>
+    
+<!-- JQUERY 불러오기 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="https://malsup.github.com/jquery.cycle2.js"></script>
+<script src="https://malsup.github.io/jquery.cycle2.carousel.js"></script>
+<script defer>$.fn.cycle.defaults.autoSelector = '.cycle-slideshow';</script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
 
 <!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
 <script
@@ -90,77 +108,47 @@
 </head>
 <body>
 	<div class="body-content min-height-100vh flex flex-column">
-		<!-- 로고바 시작 -->
-		<header class="logo-bar con-min-width">
-			<div class="con height-100p flex flex-jc-c">
-				<a href="#" class="logo flex flex-ai-c">
-					<i class="fab fa-jenkins"></i>
-					<span>Clean Code</span>
-				</a>
-			</div>
-		</header>
-		<!-- 로고바 끝 -->
-
-		<!-- 메뉴바 시작 -->
-		<header class="menu-bar con-min-width">
-			<div class="con height-100p">
-				<nav class="menu-bar__menu-1">
-					<ul class="flex">
-						<li>
-							<a href="./" class="block">
-								<i class="fas fa-home"></i>
-								<span>HOME</span>
-							</a>
-						</li>
-						<li>
-							<a href="./article_search.html" class="block">
-								<i class="fas fa-search"></i>
-								<span>검색</span>
-							</a>
-						</li>
-						<li>
-							<a class="block">
-								<i class="fas fa-list"></i>
-								<span>ARTICLES</span>
-							</a>
-							<ul>
-								${menu-bar__menu-1__board-menu-content}
-							</ul>
-						</li>
-						<li>
-							<a class="block">
-								<i class="fas fa-link"></i>
-								<span>LINK</span>
-							</a>
-							<ul>
-								<li>
-									<a href="https://jhs512.github.io/blog/" target="_blank"
-										class="block">
-										<i class="fab fa-blogger-b"></i>
-										<span>BLOG</span>
-									</a>
-								</li>
-								<li>
-									<a href="https://github.com/" target="_blank" class="block">
-										<i class="fab fa-github"></i>
-										<span>GITHUB</span>
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="stat.html" class="block">
-								<i class="fas fa-chart-pie"></i>
-								<span>STATISTICS</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</header>
+        <header class="header">
+	      <div class="container clearfix navi">
+	        <h1 class="logo"><a href="">Clean&Code logo</a></h1>
+	        <nav class="clearfix">
+	          <ul class="main-menu">
+	            <li><a href="https://ssg.yadah.kr" class="active">Home</a></li>
+	            <li><a href="article_list_JAVA_1.html">Articles</a></li>
+	            <li><a href="https://david95j2.tistory.com/">Blog</a></li>
+	            <li><a href="https://github.com/david95j2">Github</a></li>
+	            <li><a href="">STATISTICS</a></li>
+	          </ul>
+	          <ul class="top-icons">
+	            <!--<li><a href=""><i class="fas fa-shopping-bag"></i></a></li>-->
+	            <li><a href=""><i class="fas fa-search"></i></a></li>
+	          </ul>
+	          <span class="toggle"><i class="fas fa-bars"></i></span>
+	        </nav>
+	      </div>
+	    </header>
+    
+	    <script>
+	      $(function() {
+	          var rollHeader = 100;
+	          $(window).scroll(function() {
+	              var scroll = getCurrentScroll();
+	              if (scroll >= rollHeader) {
+	                  $('.header').addClass('roll');
+	              } else {
+	                  $('.header').removeClass('roll');
+	              }
+	          });
+	
+	          function getCurrentScroll() {
+	              return window.pageYOffset || document.documentElement.scrollTop;
+	          }
+	      });
+	    </script>
 		<!-- 메뉴바 끝 -->
 
-		<main class="flex-grow-1">
+		<main class="flex-grow-1 content">
+			<section class="serve-menu-bg"></section>
 			<section class="title-bar con-min-width">
 				<h1 class="con">
 					${title-bar__content}

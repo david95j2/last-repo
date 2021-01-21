@@ -23,17 +23,17 @@ public class BuildService {
 		System.out.println("site/article 폴더 생성");
 		Util.mkdirs("site");
 
-		Util.copyDir("site_template/img", "site/img");
+		Util.copyDir("site_template/images", "site/images");
 
 		Util.copy("site_template/favicon.svg", "site/favicon.svg");
 		Util.copy("site_template/app.css", "site/app.css");
 		Util.copy("site_template/app.js", "site/app.js");
 		
 		loadDataFromDisqus();
-		//loadDataFromGa4Data();
+		loadDataFromGa4Data();
 
-		buildIndexPage();
-		//buildArticleTagPage();
+//		buildIndexPage();
+		buildArticleTagPage();
 		buildArticleSearchPage();
 		buildArticleListPages();
 		buildArticleDetailPages();
@@ -408,7 +408,7 @@ public class BuildService {
 		} else if (pageName.startsWith("article_list_JAVA")) {
 			return "<i class=\"fab fa-java\"></i> <span>JAVA LIST</span>";
 		} else if (pageName.startsWith("article_list_MySQL")) {
-			return "<i class=\"fab fa-java\"></i> <span>MySQL LIST</span>";
+			return "<i class=\"fas fa-database\"></i> <span>MySQL LIST</span>";
 		} else if (pageName.startsWith("article_list_JS")) {
 			return "<i class=\"fab fa-js-square\"></i> <span>JS LIST</span>";
 		} else if (pageName.startsWith("article_list_")) {
