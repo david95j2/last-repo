@@ -32,7 +32,7 @@ public class BuildService {
 		loadDataFromDisqus();
 		loadDataFromGa4Data();
 
-//		buildIndexPage();
+		buildIndexPage();
 		buildArticleTagPage();
 		buildArticleSearchPage();
 		buildArticleListPages();

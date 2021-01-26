@@ -79,6 +79,8 @@
 <script src="https://malsup.github.io/jquery.cycle2.carousel.js"></script>
 <script defer>$.fn.cycle.defaults.autoSelector = '.cycle-slideshow';</script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 
 <!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
@@ -108,7 +110,8 @@
 </head>
 <body>
 	<div class="body-content min-height-100vh flex flex-column">
-        <header class="header">
+		<!--
+		<header class="header">
 	      <div class="container clearfix navi">
 	        <h1 class="logo"><a href="">Clean&Code logo</a></h1>
 	        <nav class="clearfix">
@@ -119,32 +122,81 @@
 	            <li><a href="https://github.com/david95j2">Github</a></li>
 	            <li><a href="">STATISTICS</a></li>
 	          </ul>
-	          <ul class="top-icons">
+	          <ul class="top-icons">-->
 	            <!--<li><a href=""><i class="fas fa-shopping-bag"></i></a></li>-->
-	            <li><a href=""><i class="fas fa-search"></i></a></li>
+	            <!--<li><a href=""><i class="fas fa-search"></i></a></li>
 	          </ul>
 	          <span class="toggle"><i class="fas fa-bars"></i></span>
 	        </nav>
 	      </div>
-	    </header>
-    
-	    <script>
-	      $(function() {
-	          var rollHeader = 100;
-	          $(window).scroll(function() {
-	              var scroll = getCurrentScroll();
-	              if (scroll >= rollHeader) {
-	                  $('.header').addClass('roll');
-	              } else {
-	                  $('.header').removeClass('roll');
-	              }
-	          });
+	    </header>-->
 	
-	          function getCurrentScroll() {
-	              return window.pageYOffset || document.documentElement.scrollTop;
-	          }
-	      });
-	    </script>
+	    <header>
+			<!-- Header Start -->
+			<div class="header-area">
+				<div class="main-header header-sticky">
+					<div class="container-fluid">
+						<div class="menu-wrapper">
+							<!-- Logo -->
+							<div class="logo">
+								<a href="index.html">
+								  <img src="" id="img1">
+								  <img src="" id="img2">
+								</a>                          
+							</div>
+							<!-- Main-menu -->
+							<div class="main-menu d-none d-lg-block">
+								<nav>                                                
+									<ul id="navigation" class="test">  
+										<li><a href="https://ssg.yadah.kr">Home</a></li>
+										<li><a href="about.html">about</a></li>
+										<li class="hot"><a href="#">Article</a>
+											<ul class="submenu">
+												${menu-bar__menu-1__board-menu-content}
+											</ul>
+										</li>
+										<li><a href="blog.html">Blog</a>
+											<ul class="submenu">
+												<li><a href="https://david95j2.tistory.com/">Tistory</a></li>
+												<li><a href="https://yadah.kr">ssg-fake blog</a></li>
+											</ul>
+										</li>
+										<li><a href="blog.html">Statistics</a></li>
+										<li><a href="#">Test Page</a>
+											<ul class="submenu">
+												<li><a href="#">Test1</a></li>
+												<li><a href="#">Test2</a></li>
+												<li><a href="#">Test3</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+								<span class="toggle"><i class="fas fa-bars"></i></span>
+							</div>
+							<!-- Header Right -->
+							<div class="header-right">
+								<ul>
+									<li>
+										<div class="nav-search search-switch">
+										  <i class="fas fa-search"></i>
+											<span class="flaticon-search"></span>
+										</div>
+									</li>
+									<li> <a href="login.html"><i class="far fa-user"></i><span class="flaticon-user"></span></a></li>
+									<!--<li><a href="cart.html"><i class="fas fa-shopping-cart"></i><span class="flaticon-shopping-cart"></span></a> </li>-->
+								</ul>
+							</div>
+						</div>
+						<!-- Mobile Menu -->
+						<div class="col-12">
+							<div class="mobile_menu d-block d-lg-none"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Header End -->
+		</header>	
+
 		<!-- 메뉴바 끝 -->
 
 		<main class="flex-grow-1 content">

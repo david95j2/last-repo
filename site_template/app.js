@@ -90,28 +90,28 @@ $(document).ready(function(){
         prevSelector: '.recent_posts .controls .prev'
     })
     //mobile menu
-    $(".toggle").click(function(){
-       $(".main-menu").slideToggle();
-    });
+//    $(".toggle").click(function(){
+//       $(".main-menu").slideToggle();
+//    });
 
     //resize menu
-    $(window).resize(function(){
-       if($(window).width() > 768 ) {
-            $(".main-menu").show();
-       } else {
-            $(".main-menu").hide();
-       }
-    });
+//    $(window).resize(function(){
+//       if($(window).width() > 768 ) {
+//            $(".main-menu").show();
+//       } else {
+//            $(".main-menu").hide();
+//       }
+//    });
 
     //상단 메뉴 고정
-    var $header = $('header');
-    $(window).scroll(function(){
-        if($(this).scrollTop() > 0) {
-            $header.addClass('sticky');
-        } else {
-            $header.removeClass('sticky');
-        }
-    });
+//    var $header = $('header');
+//    $(window).scroll(function(){
+//        if($(this).scrollTop() > 0) {
+//            $header.addClass('sticky');
+//        } else {
+//            $header.removeClass('sticky');
+//        }
+//    });
 
 }); // ready (funtion())
 
@@ -167,3 +167,49 @@ function showSlides(n) {
   slides[n].style.display = " block";
   dots[n].className += " active";
 }
+
+
+
+$(function() {
+  var rollHeader = 100;
+  $(window).scroll(function() {
+      var scroll = getCurrentScroll();
+      if (scroll >= rollHeader) {
+          $('header').addClass('roll'); 
+          $("#img1").hide();
+          $("#img2").show();
+      } else {
+          $('header').removeClass('roll');
+          $("#img1").show();
+          $("#img2").hide();
+      }
+   });
+
+   function getCurrentScroll() {
+       return window.pageYOffset || document.documentElement.scrollTop;
+   }
+});
+
+$(function(){
+  $( '.toggle' ).click( function() {
+      $( '.test' ).toggle( 200 );
+  });
+});
+
+$(document).ready(function(){
+/*웹페이지 열었을 때*/
+  $("#img1").show();
+  $("#img2").hide();
+
+/*img1을 클릭했을 때 img2를 보여줌*/
+//    $("#img1").click(function(){
+//        $("#img1").hide();
+//        $("#img2").show();
+//   });
+
+/*img2를 클릭했을 때 img1을 보여줌*/
+//    $("#img2").click(function(){
+//        $("#img1").show();
+//        $("#img2").hide();
+//    });
+});
