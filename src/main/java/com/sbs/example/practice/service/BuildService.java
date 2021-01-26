@@ -225,7 +225,7 @@ public class BuildService {
 		sb.append(mainHtml);
 		sb.append(foot);
 
-		String filePath = "site/index.html";
+		String filePath = "site/test.html";
 		Util.writeFile(filePath, sb.toString());
 		System.out.println(filePath + " 생성");
 	}
