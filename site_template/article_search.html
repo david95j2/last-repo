@@ -15,14 +15,14 @@
 			</form>
 		</div>
 		<div class="article-list">
-			<header>
+			<div>
 				<div>
 					<div class="article-list__cell-id">번호</div>
 					<div class="article-list__cell-reg-date">날짜</div>
 					<div class="article-list__cell-writer">작성자</div>
 					<div class="article-list__cell-title">제목</div>
 				</div>
-			</header>
+			</div>
 			<div class="main">
 				<div v-for="article in filtered">
 					<div class="article-list__cell-id">{{article.getId()}}</div>
