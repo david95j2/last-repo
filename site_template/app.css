@@ -111,6 +111,8 @@ h1,h2,h3,h4,h5,h6 {
   font-family: "Raleway", sans-serif;
 }
 
+h1 {font-size:25px}
+
 .content_tt { font-size: 30px; font-weight: 600; color: #555; text-align: center;}
 .content_desc {font-size: 16px; font-weight: 300; color: #8c8c8c; width: 65%; margin: 23px auto 33px;}
 
@@ -497,7 +499,7 @@ header .roll .header-area {
 
 /* RESPONSIVE */
 @media screen and (max-width:768px) {
-  .header-area {width:100%;,padding:0 15px; box-sizing:border-box;}
+  .header-area {width:100%; padding:0 15px; box-sizing:border-box;}
   header {position: static; top: 0; background: #fff; padding: 20px 0 0;  box-shadow: 0 3px 3px rgba(0,0,0,.3);}
   .toggle {display: block; position: absolute; top: 33px; right: 30px; line-height: 56px;}
   .toggle:hover {color:red;}
@@ -623,8 +625,8 @@ footer p {color: #555; font-size: 14px;}
 
 /* 타이틀바 시작 */
 .title-bar {
-  margin-top: 130px;
-  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 /* 타이틀바 끝 */
 
@@ -768,3 +770,5 @@ footer p {color: #555; font-size: 14px;}
 /* vue 끝 */
 
 .flex-grow-1 {margin-top: 130px;}
+.article-detail__sub-info {justify-content: space-around; margin-bottom:20px;}
+.tui-editor-contents {font-size : 18px;}
